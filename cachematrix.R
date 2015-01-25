@@ -1,38 +1,32 @@
-#function 'makeCacheMatrix' creates matrix object
-#'cacheSolve' function computes the inverse of the matrix returned by 'makeCacheMatrix' function
+#There are two functtions. The function 'makeCacheMatrix' would create the matrix object, and...
+# the function 'cacheSolve' would computes inverse of the matrix that was created through 'makeCacheMatrix' function
 
 
-#function 'makeCacheMatrix' creates matrix object
+#function 'makeCacheMatrix' - to create the matrix object
 
 makeCacheMatrix <- function(x = matrix()) {
-        inverse_matrix <- NULL                          #set value "NULL" to the variable, which will consist of inverse matrix 
-        set <- function(y) {                                 #function 'set' set value to the variable 'x'
+        matrixinverse <- NULL                                   #Initializes the inverse matrix 
+        set <- function(y) {                                    #Sets value to the variable 'x'
                 x <<- y
-                inverse_matrix <<- NULL
+                matrixinverse <<- NULL
 }
-        get <- function() x                                   #get value of the variable 'x'
-        setsolve <- function(solve) inverse_matrix <<- solve   #assignment value of variable 'solve' to variable 'inverse_matrix'  
-        getsolve <- function() inverse_matrix                 #get value of the variable 'inverse_matrix'
-        list(set = set, get = get,                            #create list of functions
-             setsolve = setsolve,
-             getsolve = getsolve)
+        get <- function() x                                     #Retreives value of the variable 'x'
+        setsolve <- function(solve) matrixinverse <<- solve   
+        getsolve <- function() matrixinverse                    #get value of the variable 'matrixinverse'
+        list(set = set, get = get, setsolve = setsolve, getsolve = getsolve)
 
 }
 
 #'cacheSolve' function computes the inverse of the matrix returned by 'makeCacheMatrix' function
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-                inverse_matrix <- x$getsolve()                        #get value of inverse matrix, if exists
-        if(!is.null(inverse_matrix)) {                        #getting value of inverse matrix from cache
-                message("Getting cached data...")      
-                return(inverse_matrix)
+        matrixinverse <- x$getsolve()                           #retrieves value of matrix inverse, if already vailable
+        if(!is.null(matrixinverse)) {                          #fetching the value of matrix inverse from cache
+        return(inverse_matrix)
 } else {
-                message("calculating inverse matrix...")      #calculating inverse matrix
-                data <- x$get()
-                inverse_matrix <- solve(data, ...)
-                x$setsolve(inverse_matrix)
+        data <- x$get()
+        matrixinverse <- solve(data, ...)
+        x$setsolve(inverse_matrix)
 }
-        inverse_matrix
-
+        matrixinverse
 }
