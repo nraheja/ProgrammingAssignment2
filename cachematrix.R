@@ -1,7 +1,6 @@
 #There are two functtions. The function 'makeCacheMatrix' would create the matrix object, and...
 # the function 'cacheSolve' would computes inverse of the matrix that was created through 'makeCacheMatrix' function
 
-
 #function 'makeCacheMatrix' - to create the matrix object
 
 makeCacheMatrix <- function(x = matrix()) {
